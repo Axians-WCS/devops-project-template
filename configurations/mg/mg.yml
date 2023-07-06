@@ -1,0 +1,47 @@
+variables:
+  - name: role
+    value: mg 
+  - name: variableGroup 
+    value: GVG_MG_<cust>_01
+  - group: GVG_MG_<cust>_01
+
+trigger:
+  branches:
+    include:
+      - master 
+  paths:
+    include:
+      - configurations/mg/* 
+    exclude:
+      - configurations/mg/readme.md
+
+pool: ado-win2019-pool
+
+resources:
+  repositories:
+  - repository: axianswcs
+    type: git
+    name: Axians WCS/axianswcs
+      
+jobs:
+  ## Prod Deployment ##
+- deployment: weup101
+  displayName: weu-p1-01
+  environment: weu-p1-01
+  workspace:
+    clean: all
+  strategy:
+    runOnce:
+      deploy:
+        steps:
+        - checkout: self
+        - task: UniversalPackages@0
+          displayName: Download customer package
+          inputs:
+            command: 'download'
+            downloadDirectory: '$(System.DefaultWorkingDirectory)'
+            feedsToUse: 'internal'
+            vstsFeed: 'customer-packages'
+            vstsFeedPackage: '$(CUSTOMERSHORTNAME)'
+            vstsPackageVersion: '*'
+        - template: /pipelines/templates/alz/managementgroups/bicep-mg.yml@axianswcs                    

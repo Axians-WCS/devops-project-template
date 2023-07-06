@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "mgGroupsNames": {
+            "value": [
+                {
+                    "mgDetailsParentId": "/providers/Microsoft.Management/managementGroups/129060a8-1a82-5719-85fb-e70085dd7840",
+                    "mgDisplayName": "Network"
+                },
+                {
+                    "mgDetailsParentId": "/providers/Microsoft.Management/managementGroups/129060a8-1a82-5719-85fb-e70085dd7840",
+                    "mgDisplayName": "Monitoring"
+                },
+                {
+                    "mgDetailsParentId": "/providers/Microsoft.Management/managementGroups/129060a8-1a82-5719-85fb-e70085dd7840",
+                    "mgDisplayName": "Idenitity"
+                },
+                {
+                    "mgDetailsParentId": "/providers/Microsoft.Management/managementGroups/129060a8-1a82-5719-85fb-e70085dd7840",
+                    "mgDisplayName": "Management"
+                }
+            ]
+        }
+    }
+}
